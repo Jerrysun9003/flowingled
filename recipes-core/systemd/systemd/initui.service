@@ -1,0 +1,10 @@
+[Unit]
+Description=Ocean UI Interface Loading
+After=network.target
+
+[Service]
+User=root
+ExecStart=/usr/bin/initui.sh
+
+[Install]
+WantedBy=multi-user.target
