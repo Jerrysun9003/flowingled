@@ -1,4 +1,4 @@
-# Copyright 2023 Philips
+# Copyright (c) 2024 Koninklijke Philips N.V.
 # Released under the MIT license (see COPYING.MIT for the terms)
 #
 # SPDX-License-Identifier: MIT
@@ -10,12 +10,14 @@ Ocean Boards. It includes support for many IPs such as GPU, VPU and IPU."
 
 require recipes-kernel/linux/linux-imx_6.1.bb
 
+KBUILD_DEFCONFIG:mx8-nxp-bsp= "imx_ocean_defconfig"
+
 SRC_URI = "${KERNEL_SRC}"
 KERNEL_SRC = "git://tfsemea1.ta.philips.com/tfs/TPC_Region14/MA%20PM%20Shenzhen%20RnD/_git/linux;protocol=ssh;branch=${SRCBRANCH}"
 KBRANCH = "${SRCBRANCH}"
 SRCBRANCH = "philips-ocean/ep1"
-LOCALVERSION = "-ocean"
-SRCREV = "04b05c5527e9af8d81254638c307df07dc9a5dd3"
+LOCALVERSION = "-ocean-2024-01-30"
+SRCREV = "335fc64f686e6715fb65f8311f8e7f04ab02e8e5" 
 
 # PV is defined in the base in linux-imx.inc file and uses the LINUX_VERSION definition
 # required by kernel-yocto.bbclass.
