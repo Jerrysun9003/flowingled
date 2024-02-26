@@ -1,0 +1,12 @@
+
+[Unit]
+Description=UT5000 Service
+After=weston.service
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c "export DISPLAY=:0.0; /usr/bin/initut5000.sh"
+Restart=no
+
+[Install]
+WantedBy=multi-user.target
