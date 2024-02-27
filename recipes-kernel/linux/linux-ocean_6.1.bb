@@ -17,7 +17,7 @@ KERNEL_SRC = "git://tfsemea1.ta.philips.com/tfs/TPC_Region14/MA%20PM%20Shenzhen%
 KBRANCH = "${SRCBRANCH}"
 SRCBRANCH = "philips-ocean/ep1"
 LOCALVERSION = "-ocean-2024-01-30"
-SRCREV = "335fc64f686e6715fb65f8311f8e7f04ab02e8e5" 
+SRCREV = "868618f674816db467c08e30d94e57e117b02d43" 
 
 # PV is defined in the base in linux-imx.inc file and uses the LINUX_VERSION definition
 # required by kernel-yocto.bbclass.
