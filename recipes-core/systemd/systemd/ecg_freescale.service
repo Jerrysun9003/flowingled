@@ -1,0 +1,11 @@
+[Unit]
+Description=ECG Freescale Service
+After=nats-service.service
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c "/usr/bin/ecg_freescale > /var/log/ecg_freescale.log 2>&1"
+Restart=no
+
+[Install]
+WantedBy=multi-user.target

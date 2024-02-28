@@ -1,10 +1,11 @@
 [Unit]
 Description=Ocean UI Interface Loading
-After=network.target
+After=ut5000.service
 
 [Service]
-User=root
-ExecStart=/usr/bin/initui.sh
+Type=simple
+ExecStart=/bin/bash -c "/usr/bin/initui.sh"
+Restart=no
 
 [Install]
 WantedBy=multi-user.target
