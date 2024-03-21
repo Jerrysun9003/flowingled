@@ -10,14 +10,14 @@ Ocean Boards. It includes support for many IPs such as GPU, VPU and IPU."
 
 require recipes-kernel/linux/linux-imx_6.1.bb
 
-KBUILD_DEFCONFIG:mx8-nxp-bsp= "imx_ocean_defconfig"
+KBUILD_DEFCONFIG:mx8mp-nxp-bsp = "imx_ocean_defconfig"
 
 SRC_URI = "${KERNEL_SRC}"
 KERNEL_SRC = "git://tfsemea1.ta.philips.com/tfs/TPC_Region14/MA%20PM%20Shenzhen%20RnD/_git/linux;protocol=ssh;branch=${SRCBRANCH}"
 KBRANCH = "${SRCBRANCH}"
 SRCBRANCH = "philips-ocean/ep1"
-LOCALVERSION = "-ocean-2024-01-30"
-SRCREV = "868618f674816db467c08e30d94e57e117b02d43" 
+LOCALVERSION = "-ocean-2024-03-20"
+SRCREV = "9414c9048b89bc86f92e6fa14a76fbb903975704" 
 
 # PV is defined in the base in linux-imx.inc file and uses the LINUX_VERSION definition
 # required by kernel-yocto.bbclass.
