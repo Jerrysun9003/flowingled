@@ -5,16 +5,39 @@ DESCRIPTION = "Philips Ocean Image to validate pacific machines. \
 This image contains everything used to test philips machines including GUI, \
 demos and lots of applications. This creates a very large image, not \
 suitable for production."
+LICENSE = "MIT"
 
-require recipes-fsl/images/imx-image-multimedia.bb
+inherit core-image
 
-#############remove useless config and functions ######
-CORE_IMAGE_EXTRA_INSTALL:remove  = "packagegroup-imx-isp"
+## Select Image Features
+IMAGE_FEATURES += " \
+    debug-tweaks \
+    tools-profile \
+    splash \
+    nfs-server \
+    tools-debug \
+    ssh-server-openssh \
+    hwcodecs \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'weston', \
+       bb.utils.contains('DISTRO_FEATURES',     'x11', 'x11-base x11-sato', \
+                                                       '', d), d)} \
+"
 
-####removing tools-testapps is for delete conmman
-IMAGE_FEATURES:remove = " tools-testapps "
+CORE_IMAGE_EXTRA_INSTALL += " \
+    packagegroup-core-full-cmdline \
+    packagegroup-tools-bluetooth \
+    packagegroup-fsl-tools-audio \
+    packagegroup-fsl-tools-gpu \
+    packagegroup-fsl-tools-gpu-external \
+    packagegroup-fsl-tools-testapps \
+    packagegroup-imx-security \
+    packagegroup-fsl-gstreamer1.0 \
+    packagegroup-fsl-gstreamer1.0-full \
+    firmwared \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'x11 wayland', 'weston-xwayland xterm', '', d)} \
+"
 
-###########################install 64 lib package ############
+###########################customized package for target ocean images ############
 CORE_IMAGE_EXTRA_INSTALL += "chromium-ozone-wayland"
 
 IMAGE_INSTALL += "tslib"
