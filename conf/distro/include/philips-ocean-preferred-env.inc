@@ -2,7 +2,7 @@
 include conf/distro/include/fsl-imx-preferred-env.inc
 
 DISTRO_NAME = "Philips OCEAN Release Distro"
-DISTRO_VERSION = "6.1.36_R.00.04"
+DISTRO_VERSION = "6.1.36_R.00.07"
 DISTROOVERRIDES = "ocean"
 
 # define the virtual/bootloader is u-boot-ocean
