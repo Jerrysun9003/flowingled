@@ -1,0 +1,29 @@
+# Philips OCEAN Customized Partition 
+# short-description: Create SD card image with a boot partition
+# long-description:
+# Create an image that can be written onto a SD card using dd for use
+# with Ocean family
+# It uses u-boot + other binaries gathered together on imx-boot file
+#
+# The disk layout used is:
+#  - ---------- -------------- -------------- -----------------
+# | | imx-boot |     boot     |     root     |       data      |
+#  - ---------- -------------- -------------- -----------------
+# ^ ^          ^              ^              ^                 ^
+# | |          |              |              |                 |
+# 0 |        8MB            8M+64M       8M+64M+4G       8M+64M+4G+8G
+#   ${OCEAN_BOOT_ALIGN} 32 or 33kiB, see reference manual
+#
+# for bootloader area, total 8M
+part u-boot --source rawcopy --sourceparams="file=imx-boot" --ondisk mmcblk --no-table --align ${OCEAN_BOOT_ALIGN} 
+
+# for kernel
+part /boot --source bootimg-partition --ondisk mmcblk --fstype=vfat --label ${OCEAN_KERNEL_LABEL} --active --align ${OCEAN_KERNEL_ALIGN} --fixed-size ${OCEAN_KERNEL_SIZE}
+
+# for rootfs
+part / --source rootfs --ondisk mmcblk --fstype=ext4 --label ${OCEAN_ROOTFS_LABEL} --align ${OCEAN_ROOTFS_ALIGN} --fixed-size ${OCEAN_ROOTFS_SIZE}
+
+# for data
+part /data --ondisk mmcblk --fstype=ext4 --label ${OCEAN_DATA_LABEL} --align ${OCEAN_DATA_ALIGN} --fixed-size ${OCEAN_DATA_SIZE}
+
+bootloader --ptable msdos

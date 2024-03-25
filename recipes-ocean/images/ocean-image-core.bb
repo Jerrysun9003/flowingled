@@ -6,6 +6,8 @@ LICENSE = "MIT"
 
 require recipes-fsl/images/imx-image-core.bb
 
+export IMAGE_BASENAME = "ocean-image-core"
+
 ###########################install 64 lib package ############
 CORE_IMAGE_EXTRA_INSTALL += "chromium-ozone-wayland"
 
