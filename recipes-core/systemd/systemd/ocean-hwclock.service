@@ -5,7 +5,7 @@ Before=syslogd.service
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/powermcuclock --hctosys
+ExecStart=/usr/bin/ocean-hwclock --hctosys
 Restart=no
 
 [Install]
