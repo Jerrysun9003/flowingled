@@ -63,8 +63,10 @@ IMAGE_INSTALL += "\
 		netcat \
 		ethtool \
 		wireless-tools \
+		ocean-hwclock \
 "
 ######## those packges installed only for wifi/bt##########
+# delete summit-networkmanager-60 summit-networkmanager-60-nmcli #
 IMAGE_INSTALL += "\
 		iperf3 \
 		tcpdump \
@@ -75,6 +77,7 @@ IMAGE_INSTALL += "\
 		bt-uart-scripts	\
 		summit-supplicant-60 \
 		summit-supplicant-libs-60 \
-		summit-networkmanager-60 \
-		summit-networkmanager-60-nmcli \
 "
+
+### ocean-core package install ###
+IMAGE_INSTALL += "fltk"

@@ -21,6 +21,7 @@ IMAGE_INSTALL += "\
 		netcat \
 		ethtool \
 		wireless-tools \
+		ocean-hwclock \
 "
 ######## those packges installed only for wifi/bt##########
 IMAGE_INSTALL += "\

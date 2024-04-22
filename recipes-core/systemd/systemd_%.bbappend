@@ -3,7 +3,8 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/${BPN}:"
 SRC_URI += "file://ecg_freescale.service \
             file://nats-service.service \
             file://ut5000.service \
-            file://initui.service "
+            file://initui.service \
+            file://ocean-hwclock.service "
 
 do_install:append () {
     # if running in ocean machine to create initial condition for UI
@@ -12,5 +13,6 @@ do_install:append () {
         install -Dm 0644 ${WORKDIR}/nats-service.service ${D}${sysconfdir}/systemd/system/
         install -Dm 0644 ${WORKDIR}/ut5000.service ${D}${sysconfdir}/systemd/system/
         install -Dm 0644 ${WORKDIR}/initui.service ${D}${sysconfdir}/systemd/system/
+        install -Dm 0644 ${WORKDIR}/ocean-hwclock.service ${D}${sysconfdir}/systemd/system/
     fi
 }

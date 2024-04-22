@@ -1,0 +1,12 @@
+[Unit]
+Description=Power MCU RTC Date Sync Service
+After=basic.target
+Before=syslogd.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/ocean-hwclock --hctosys
+Restart=no
+
+[Install]
+WantedBy=multi-user.target
