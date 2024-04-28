@@ -57,6 +57,7 @@ IMAGE_INSTALL += "freetype"
 IMAGE_INSTALL += "cairo"
 IMAGE_INSTALL += "openssl"
 IMAGE_INSTALL += "libdrm"
+IMAGE_INSTALL += "nxp-nfc"
 
 #########tools only#####
 IMAGE_INSTALL += "\
