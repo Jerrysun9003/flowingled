@@ -15,9 +15,9 @@ KBUILD_DEFCONFIG:mx8mp-nxp-bsp = "imx_ocean_defconfig"
 SRC_URI = "${KERNEL_SRC}"
 KERNEL_SRC = "git://tfsemea1.ta.philips.com/tfs/TPC_Region14/MA%20PM%20Shenzhen%20RnD/_git/linux;protocol=ssh;branch=${SRCBRANCH}"
 KBRANCH = "${SRCBRANCH}"
-SRCBRANCH = "philips-ocean/ep1"
+SRCBRANCH = "philips-ocean/pp1"
 LOCALVERSION = "-ocean-2024-03-20"
-SRCREV = "e3b765d474b34e9d7e5088685f9e79fd83167834"
+SRCREV = "8b7e778f39878f123e00163c17fc593950a46bf3"
 
 # PV is defined in the base in linux-imx.inc file and uses the LINUX_VERSION definition
 # required by kernel-yocto.bbclass.
