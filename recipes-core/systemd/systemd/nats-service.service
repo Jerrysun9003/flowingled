@@ -5,7 +5,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStartPre=/bin/bash -c "nmcli device set lan2 managed no; /sbin/ip addr add 192.168.200.1/24 dev lan2"
+ExecStartPre=/bin/bash -c "/sbin/ip addr add 192.168.200.1/24 dev lan2; ifconfig lan2 up"
 ExecStart=/bin/bash -c "/usr/bin/nats-server -c /etc/ocean/nats-serv.conf > /var/log/nats-server.log 2>&1"
 Restart=no
 
