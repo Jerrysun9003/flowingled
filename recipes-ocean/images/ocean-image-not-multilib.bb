@@ -13,7 +13,6 @@ inherit core-image
 IMAGE_FEATURES += " \
     debug-tweaks \
     tools-profile \
-    splash \
     nfs-server \
     tools-debug \
     ssh-server-openssh \
