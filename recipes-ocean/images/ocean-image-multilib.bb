@@ -35,3 +35,6 @@ IMAGE_INSTALL += "freetype"
 IMAGE_INSTALL += "iw"
 IMAGE_INSTALL += "cairo"
 IMAGE_INSTALL += "libdrm"
+
+### for ocean-ui ###
+IMAGE_INSTALL += "ocean-ui"

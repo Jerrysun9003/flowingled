@@ -80,3 +80,6 @@ IMAGE_INSTALL += "\
 
 ### ocean-core package install ###
 IMAGE_INSTALL += "fltk"
+
+### for ocean-ui ###
+IMAGE_INSTALL += "ocean-ui"
