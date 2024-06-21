@@ -13,7 +13,6 @@ inherit core-image
 IMAGE_FEATURES += " \
     debug-tweaks \
     tools-profile \
-    splash \
     nfs-server \
     tools-debug \
     ssh-server-openssh \
@@ -81,3 +80,6 @@ IMAGE_INSTALL += "\
 
 ### ocean-core package install ###
 IMAGE_INSTALL += "fltk"
+
+### for ocean-ui ###
+IMAGE_INSTALL += "ocean-ui"

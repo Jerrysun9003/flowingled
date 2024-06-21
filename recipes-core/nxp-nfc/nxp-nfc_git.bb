@@ -19,19 +19,21 @@ do_install:append() {
         install -d ${D}/unit_tests
         install -d ${D}/unit_tests/NFC
         install -Dm 755 ${D}/usr/sbin/nfcDemoApp ${D}/unit_tests/NFC/
-        rm -rf "${D}/usr/sbin"
+        rm -rf ${D}/usr/sbin
     fi
 
     if [ -d "${D}/etc" ]; then
         install -d ${D}/usr/local
         install -d ${D}/usr/local/etc
         install -Dm 755 ${D}/etc/* ${D}/usr/local/etc/
-        rm -rf "${D}/etc"
+        rm -rf ${D}/etc/*.conf
+        ln -sf  /usr/local/etc/libnfc-nci.conf  ${D}/etc/libnfc-nci.conf
+        ln -sf  /usr/local/etc/libnfc-nxp.conf  ${D}/etc/libnfc-nxp.conf
     fi
 }
 
 FILES:${PN} = "/unit_tests/NFC/* \
                 /usr/local/etc/* \
-                ${bindir}/* \
                 ${libdir}/* \
+                ${sysconfdir}/* \
 "
