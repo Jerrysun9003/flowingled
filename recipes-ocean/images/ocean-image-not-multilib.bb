@@ -83,3 +83,6 @@ IMAGE_INSTALL += "fltk"
 
 ### for ocean-ui ###
 IMAGE_INSTALL += "ocean-ui"
+
+### for ocean-upgrade functionality ###
+IMAGE_INSTALL += "ocean-upgrade"
