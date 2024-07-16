@@ -7,22 +7,25 @@
 #
 # The disk layout used is:
 #  - ---------- -------------- --------------
-# | | imx-boot |     boot     |     root     |    boot red   |      root red      |        free space             |
-#  - ---------- -------------- -------------- --------------- -------------------- --------------------------------
-# ^ ^          ^              ^              ^               ^                    ^                               ^
-# | |          |              |              |               |                    |                               |
-# 0 |         8MiB          8M+128M      8M+128M+4G     8M+128M+4G+128M    8M+128M+4G+128M+4G
-#   ${OCEAN_BOOT_SEEK} 32 or 33kiB, see reference manual
+# | | imx-boot |    kernel    |     root     |   kernel red  |      root red      |        data                |        free space             |
+#  - ---------- -------------- -------------- --------------- -------------------- ----------------------------------------------------------
+# ^ ^          ^              ^              ^               ^                    ^                            ^                               ^
+# | |          |              |              |               |                    |                            |                               |
+# 0 |         8MiB          8M+128M      8M+128M+4G     8M+128M+4G+128M    8M+128M+4G+128M+4G         8M+128M+4G+128M+4G+4G
+#   ${OCEAN_BOOT_ALIGN} 32 kiB, see reference manual
 #
 # for bootloader area, total 8M
-part u-boot --source rawcopy --sourceparams="file=imx-boot" --ondisk mmcblk --no-table --align ${OCEAN_BOOT_SEEK} 
+part u-boot --source rawcopy --sourceparams="file=imx-boot" --ondisk mmcblk --no-table --align ${OCEAN_BOOT_ALIGN} --fixed-size ${OCEAN_BOOT_SIZE}
 
 # for kernel and rootfs
-part /boot --source bootimg-partition --ondisk mmcblk --fstype=vfat --label ${OCEAN_KERNEL_LABEL} --active --align ${OCEAN_KERNEL_SEEK} --fixed-size ${OCEAN_KERNEL_SIZE}
-part / --source rootfs --ondisk mmcblk --fstype=ext4 --label ${OCEAN_ROOTFS_LABEL} --align ${OCEAN_ROOTFS_SEEK} --fixed-size ${OCEAN_ROOTFS_SIZE}
+part /boot --source bootimg-partition --ondisk mmcblk --fstype=vfat --label ${OCEAN_KERNEL_LABEL} --active --align ${OCEAN_KERNEL_ALIGN} --fixed-size ${OCEAN_KERNEL_SIZE}
+part / --source rootfs --ondisk mmcblk --fstype=ext4 --label ${OCEAN_ROOTFS_LABEL} --active --align ${OCEAN_ROOTFS_ALIGN} --fixed-size ${OCEAN_ROOTFS_SIZE}
 
 # for kernel backup and rootfs backup
-part /boot --source bootimg-partition --ondisk mmcblk --fstype=vfat --label ${OCEAN_KERNEL_LABEL_RED} --active --align ${OCEAN_KERNEL_SEEK_RED} --fixed-size ${OCEAN_KERNEL_SIZE_RED}
-part / --source rootfs --ondisk mmcblk --fstype=ext4 --label ${OCEAN_ROOTFS_LABEL_RED} --align ${OCEAN_ROOTFS_SEEK_RED} --fixed-size ${OCEAN_ROOTFS_SIZE_RED}
+part /boot  --ondisk mmcblk --fstype=vfat --label ${OCEAN_KERNEL_LABEL_RED} --align ${OCEAN_KERNEL_ALIGN_RED} --fixed-size ${OCEAN_KERNEL_SIZE_RED}
+part /  --ondisk mmcblk --fstype=ext4 --label ${OCEAN_ROOTFS_LABEL_RED} --align ${OCEAN_ROOTFS_ALIGN_RED} --fixed-size ${OCEAN_ROOTFS_SIZE_RED}
 
-bootloader --ptable msdos
+# for permernant data storage
+part /  --ondisk mmcblk --fstype=ext4 --label ${OCEAN_ROOTFS_LABEL_DATA}  --align ${OCEAN_ROOTFS_ALIGN_DATA} --fixed-size ${OCEAN_ROOTFS_SIZE_DATA}
+
+bootloader --ptable gpt
