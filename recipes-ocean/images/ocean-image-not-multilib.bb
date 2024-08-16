@@ -59,6 +59,7 @@ IMAGE_INSTALL += "\
 		netcat \
 		ethtool \
 		wireless-tools \
+		minicom \
 "
 ### those packges installed only for wifi/bt ###
 IMAGE_INSTALL += "\
