@@ -26,6 +26,7 @@ CORE_IMAGE_EXTRA_INSTALL += " \
     packagegroup-fsl-tools-audio \
     packagegroup-fsl-tools-gpu \
     packagegroup-fsl-tools-gpu-external \
+    firmwared \
     ${@bb.utils.contains('DISTRO_FEATURES', 'x11 wayland', 'weston-xwayland xterm', '', d)} \
 "
 # this variable defautly created by conf/local.conf env variable, better remove manually
@@ -59,6 +60,7 @@ IMAGE_INSTALL += "\
 		netcat \
 		ethtool \
 		wireless-tools \
+		minicom \
 "
 ### those packges installed only for wifi/bt ###
 IMAGE_INSTALL += "\
